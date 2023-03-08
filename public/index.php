@@ -1,2 +1,2 @@
 <?php
-echo 'hello from mvcv2';
+// echo $_SERVER['QUERY_STRING'];
