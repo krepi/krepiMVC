@@ -18,7 +18,7 @@ $router->add('posts/new',['controller' =>'Posts', 'action'=>'new']);
 // echo '<pre>';
 
 $url = $_SERVER['QUERY_STRING'];
-
+echo 'hello from PHP Storm';
 if ($router->match($url)){
     echo '<pre>';
 var_dump($router->getParams());
