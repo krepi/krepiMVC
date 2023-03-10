@@ -1,19 +1,37 @@
 <?php
 
 
-require '../Core/Router.php';
-require '../App/Controllers/Posts.php';
+/**
+ * Front controller
+ *
+ * PHP version 5.4
+ */
 
-$router = new Router();
+// Require the controller class
+//require '../App/Controllers/Posts.php';
+
+/**
+ * Autoloader
+ */
+spl_autoload_register(function ($class) {
+    $root = dirname(__DIR__);   // get the parent directory
+    $file = $root . '/' . str_replace('\\', '/', $class) . '.php';
+    if (is_readable($file)) {
+        require $root . '/' . str_replace('\\', '/', $class) . '.php';
+    }
+});
 
 
+/**
+ * Routing
+ */
+//require '../Core/Router.php';
 
-// add the routes
+$router = new Core\Router();
 
-$router->add('',['controller' =>'Home', 'action'=>'index']);
+// Add the routes
+$router->add('',['controller' => 'Home', 'action' => 'index']);
 $router->add('{controller}/{action}');
-$router->add('{controller}/{id:\+}/{action}');
-
-
+$router->add('{controller}/{id:\d+}/{action}');
 
 $router->dispatch($_SERVER['QUERY_STRING']);
