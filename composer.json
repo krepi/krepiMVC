@@ -1,0 +1,14 @@
+{
+    "name": "krepi/krepi-mvc",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Przemek Krepski"
+        }
+    ],
+    "require": {}
+}
