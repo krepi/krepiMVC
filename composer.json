@@ -1,6 +1,8 @@
 {
     "require": {
-        "twig/twig": "^3.5"
+        "twig/twig": "^3.5",
+        "ext-http": "*",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {
