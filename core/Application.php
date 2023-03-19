@@ -9,14 +9,16 @@ class Application
     public static string $ROOT_DIR;
     public static Application $app;
 
+    public string $layout = 'main';
     public string $userClass;
     public Router $router;
     public Request $request;
     public Response $response;
     public Session $session;
     public Database $db;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public ?DbModel $user;
+    public View $view;
 
 
     public function __construct($rootPath, array $config)
@@ -27,6 +29,7 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->session = new Session();
+        $this->view = new View();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($config['db']);
 
@@ -61,7 +64,16 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch(\Exception $e){
+            $this->response->setStatusCode($e->getCode());
+            echo $this->view->renderView('_error',[
+                'exception'=> $e,
+
+
+                ]);
+        }
     }
 
     public function login(DbModel $user)
