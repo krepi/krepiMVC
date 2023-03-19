@@ -1,22 +1,21 @@
 <?php
 /** @var $this \app\core\View */
+/** @var $model \app\models\ContactForm */
 
+use app\core\form\TextareaField;
 $this->title = 'Contact';
 ?>
 
-<h1> Contact</h1>
-<form action="" method="post" >
-    <div class="mb-3 form-group">
-        <label >Subject</label>
-        <input type="text" class="form-control"  name="subject" ">
-    </div>
-    <div class="mb-3 form-group">
-        <label >email</label>
-        <input type="text" class="form-control"  name="email" ">
-    </div>
-    <div class="mb-3  form-group">
-        <label>Body</label>
-        <textarea type="text" class="form-control" name="body"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary float-end">Submit</button>
-</form>
+
+<h1> Contact Us</h1>
+<?php $form = \app\core\form\Form::begin('', "post") ?>
+<?= $form->field($model, 'subject') ?>
+<?= $form->field($model, 'email') ?>
+<?= new TextareaField($model, 'body') ?>
+
+<button type="submit" class="btn btn-primary float-end">Submit</button>
+<!--<a href="/login" class="btn btn-success">Have account? Login</a>-->
+
+<?= \app\core\form\Form::end() ?>
+
+
