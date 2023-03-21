@@ -4,11 +4,13 @@ use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\core\Application;
 
+
+
 require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-
+// dane konfiguracyjne
 $config = [
     'userClass'=> \app\models\User::class,
 'db'=> [
@@ -25,6 +27,8 @@ $app = new Application(dirname(__DIR__), $config);
 //    echo 'before request';
 //});
 
+
+///     routes
 $app->router->get('/', [SiteController::class,'home']);
 $app->router->get('/contact',[SiteController::class,'contact']);
 $app->router->post('/contact', [SiteController::class, 'contact' ]);
