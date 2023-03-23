@@ -31,6 +31,8 @@ class Request
 
     public function getBody()
     {
+
+        //TODO sprawdz czy isGet i isPost bedzie ok
         $body = [];
         if ($this->method() === 'get') {
             foreach ($_GET as $key => $value) {

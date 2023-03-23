@@ -12,7 +12,7 @@ use app\models\LoginForm;
 use app\models\User;
 
 /**
- *
+ *  controller odpowiedzialny
  */
 class AuthController extends Controller
 {
@@ -68,6 +68,8 @@ class AuthController extends Controller
        Application::$app->logout();
        $response->redirect('/');
     }
+
+
 
     public function profile()
     {

@@ -1,7 +1,4 @@
 <?php use app\core\Application;
-
-
-
 ?>
 <!doctype html>
 <html lang="en">

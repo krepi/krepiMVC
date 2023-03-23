@@ -7,6 +7,6 @@
 <?= $form->field($model, 'password')->passwordField() ?>
 
 <button type="submit" class="btn btn-primary float-end">Submit</button>
-<a href="/login" class="btn btn-success">Have account? Login</a>
+<a href="/register" class="btn btn-success">No account? Register</a>
 
 <?= \app\core\form\Form::end() ?>

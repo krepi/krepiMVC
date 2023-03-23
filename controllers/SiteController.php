@@ -12,10 +12,15 @@ class SiteController extends Controller
 {
 
 
+
     public function home()
     {
+
+
+        $name = Application::isGuest() ? "ziomek": Application::$app->user->getDisplayName() ;
+
         $params = [
-            'name' => 'Krepolian'
+            'name' =>  $name ,
         ];
         return $this->render('home', $params);
     }
