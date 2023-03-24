@@ -4,13 +4,34 @@ namespace app\core;
 
 use http\Params;
 
+/**
+ *
+ */
 abstract class Model
 {
+    /**
+     *
+     */
     public const RULE_REQUIRED = 'required';
+    /**
+     *
+     */
     public const RULE_EMAIL = 'email';
+    /**
+     *
+     */
     public const RULE_MIN = 'min';
+    /**
+     *
+     */
     public const RULE_MAX = 'max';
+    /**
+     *
+     */
     public const RULE_MATCH = 'match';
+    /**
+     *
+     */
     public const RULE_UNIQUE = 'unique';
 
     /**
@@ -31,12 +52,19 @@ abstract class Model
      */
     abstract public function rules(): array;
 
+    /**
+     * @return array
+     */
     public function labels(): array
     {
 
         return [];
     }
 
+    /**
+     * @param $attribute
+     * @return mixed
+     */
     public function getLabel($attribute)
     {
         return $this->labels()[$attribute] ?? $attribute;
@@ -126,17 +154,30 @@ abstract class Model
         ];
     }
 
+    /**
+     * @param $attribute
+     * @return false|mixed
+     */
     public function hasError($attribute)
     {
 
         return $this->errors[$attribute] ?? false;
     }
 
+    /**
+     * @param $attribute
+     * @return false|mixed
+     */
     public function getFirstError($attribute)
     {
         return $this->errors[$attribute][0] ?? false;
     }
 
+    /**
+     * @param string $attribute
+     * @param string $message
+     * @return void
+     */
     public function addError(string $attribute, string $message)
     {
 

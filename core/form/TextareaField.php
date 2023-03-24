@@ -2,9 +2,15 @@
 
 namespace app\core\form;
 
+/**
+ *
+ */
 class TextareaField extends BaseField
 {
 
+    /**
+     * @return string
+     */
     public function renderInput(): string
     {
        return sprintf('  <textarea  name="%s"  class="form-control%s">%s </textarea>

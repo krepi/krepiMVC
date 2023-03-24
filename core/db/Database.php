@@ -4,8 +4,14 @@ namespace app\core\db;
 
 use app\core\Application;
 
+/**
+ *
+ */
 class Database
 {
+    /**
+     * @var \PDO
+     */
     public \PDO $pdo;
 
     /**
@@ -20,6 +26,18 @@ class Database
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
+    /**
+     * @param $message
+     * @return void
+     */
+    protected function log($message){
+        echo '[ '. date('Y-m-d H:i:s') .' ]' . $message . PHP_EOL;
+    }
+
+
+    /**
+     * @return void
+     */
     public function applyMigrations()
     {
         $this->createMigrationsTable();
@@ -50,6 +68,9 @@ class Database
 
     }
 
+    /**
+     * @return void
+     */
     public function createMigrationsTable()
     {
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS  migrations (
@@ -60,6 +81,9 @@ class Database
     }
 
 
+    /**
+     * @return array|false
+     */
     public function getAppliedMigrations()
     {
       $statement =  $this->pdo->prepare("SELECT migration FROM migrations");
@@ -68,6 +92,10 @@ class Database
       return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
 
+    /**
+     * @param array $migrations
+     * @return void
+     */
     public function saveMigrations(array $migrations)
     {
       $str = implode(",", array_map(fn($m)=>"('$m')",$migrations ));
@@ -76,12 +104,12 @@ class Database
       $statement->execute();
     }
 
+    /**
+     * @param $sql
+     * @return false|\PDOStatement
+     */
     public function prepare($sql)
     {
         return $this->pdo->prepare($sql);
-    }
-
-    protected function log($message){
-        echo '[ '. date('Y-m-d H:i:s') .' ]' . $message . PHP_EOL;
     }
 }

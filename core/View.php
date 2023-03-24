@@ -2,11 +2,22 @@
 
 namespace app\core;
 
+/**
+ *
+ */
 class View
 {
-public string $title = '';
+    /**
+     * @var string
+     */
+    public string $title = '';
 
 
+    /**
+     * @param $view
+     * @param $params
+     * @return array|false|string|string[]
+     */
     public function renderView($view, $params = [])
     {
         $viewContent = $this->renderOnlyView($view, $params);
@@ -16,6 +27,10 @@ public string $title = '';
 
     }
 
+    /**
+     * @param $viewContent
+     * @return array|false|string|string[]
+     */
     public function renderContent($viewContent)
     {
         $layoutContent = $this->layoutContent();
@@ -23,6 +38,9 @@ public string $title = '';
 
     }
 
+    /**
+     * @return false|string
+     */
     public function layoutContent()
     {
         $layout = Application::$app->layout;
@@ -34,6 +52,11 @@ public string $title = '';
         return ob_get_clean();
     }
 
+    /**
+     * @param $view
+     * @param $params
+     * @return false|string
+     */
     protected function renderOnlyView($view, $params)
     {
         foreach ($params as $key => $value) {

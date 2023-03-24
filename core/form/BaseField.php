@@ -4,13 +4,26 @@ namespace app\core\form;
 
 use app\core\Model;
 
+/**
+ *
+ */
 abstract   class BaseField
 {
 
 
+    /**
+     * @var Model
+     */
     public Model $model;
+    /**
+     * @var string
+     */
     public string $attribute;
-abstract public function renderInput(): string;
+
+    /**
+     * @return string
+     */
+    abstract public function renderInput(): string;
 
 
     /**
@@ -24,6 +37,9 @@ abstract public function renderInput(): string;
         $this->attribute = $attribute;
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         return sprintf('

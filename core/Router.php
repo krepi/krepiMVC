@@ -4,10 +4,22 @@ namespace app\core;
 
 use app\core\exception\NotFoundException;
 
+/**
+ *
+ */
 class Router
 {
+    /**
+     * @var array
+     */
     protected array $routes = [];
+    /**
+     * @var Request
+     */
     public Request $request;
+    /**
+     * @var Response
+     */
     public Response $response;
 
     /**
@@ -21,16 +33,30 @@ class Router
     }
 
 
+    /**
+     * @param $path
+     * @param $callback
+     * @return void
+     */
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
     }
 
+    /**
+     * @param $path
+     * @param $callback
+     * @return void
+     */
     public function post($path, $callback)
     {
         $this->routes['post'][$path] = $callback;
     }
 
+    /**
+     * @return array|false|mixed|string|string[]
+     * @throws NotFoundException
+     */
     public function resolve()
     {
         $path = $this->request->getPath();

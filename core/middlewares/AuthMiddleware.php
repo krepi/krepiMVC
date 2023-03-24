@@ -5,8 +5,14 @@ namespace app\core\middlewares;
 use app\core\Application;
 use app\core\exception\ForbiddenException;
 
+/**
+ *
+ */
 class AuthMiddleware extends BaseMiddleware
 {
+    /**
+     * @var array
+     */
     public array $actions = [];
 
     /**
@@ -17,6 +23,10 @@ class AuthMiddleware extends BaseMiddleware
         $this->actions = $actions;
     }
 
+    /**
+     * @return void
+     * @throws ForbiddenException
+     */
     public function execute()
     {
         if(Application::isGuest()){
